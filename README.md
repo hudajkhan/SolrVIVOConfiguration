@@ -5,10 +5,12 @@ Solr 7 is a self-contained Solr.  Experimenting with setting up a Solr instance 
 The directory above is under the installed Solr directory at this location:
 server/solr
 
-Solrconfig was copied from Solr's own solrconfig (I can review what updates were made but it is mostly the same). 
+The core.properties file under this directory defines where to find the schema and solrconfig. 
+
+Solrconfig was copied from Solr's own solrconfig with some changes copying over the search handling from the original VIVO (Solr 4-compatible) schema, specifically the search handler (see < requestHandler name="/select" class="solr.SearchHandler" > ).  As mentioned below, the q.op parameter is no longer supported in schema.xml but is now in solrconfig for SearchHandler.  This is set to "AND", as it was originally, which means it was saying that all query terms had to be matched for results to return.  I have comments in the solrconfig saying I had to comment out lst name="defaults". I will need to revisit why/what effects this might have.
 
 The schema file was copied from VIVO's original schema with some updates as required to allow Solr to function (and account for changes):
-- solrQueryParser defaultOperator="AND" : no longer supported so commented out
+- solrQueryParser defaultOperator="AND" : no longer supported so commented out and the related behavior is encoded in solrconfig instead.
 - <fieldType name="text_unstemmed" class="solr.TextField" positionIncrementGap="100">, <fieldType name="textgen" class="solr.TextField" positionIncrementGap="100">,<fieldType name="lowercase" class="solr.TextField" positionIncrementGap="100">, <fieldtype name="edgengram_stemmed"  class="solr.TextField">: filter class="solr.StopFilterFactory" does not need the enablePositionIncrements="true" flag 
 - <fieldType name="location_rpt"..> uses distanceUnits instead of units
 - <similarity class="org.apache.lucene.search.similarities.DefaultSimilarity"> is not recognized and was commented out. (I need to check but I think a class needs to be specified if the default behavior is not desired.)
