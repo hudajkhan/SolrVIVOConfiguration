@@ -12,7 +12,7 @@ The schema file was copied from VIVO's original schema with some updates as requ
 - <fieldType name="text_unstemmed" class="solr.TextField" positionIncrementGap="100">, <fieldType name="textgen" class="solr.TextField" positionIncrementGap="100">,<fieldType name="lowercase" class="solr.TextField" positionIncrementGap="100">, <fieldtype name="edgengram_stemmed"  class="solr.TextField">: filter class="solr.StopFilterFactory" does not need the enablePositionIncrements="true" flag 
 - <fieldType name="location_rpt"..> uses distanceUnits instead of units
 - <similarity class="org.apache.lucene.search.similarities.DefaultSimilarity"> is not recognized and was commented out. (I need to check but I think a class needs to be specified if the default behavior is not desired.)
-- side="front" removed from  <filter class="solr.EdgeNGramFilterFactory">
+- side="front" removed from  < filter class="solr.EdgeNGramFilterFactory" >
  
  
 On the VIVO end, runtime.properties (in this example) uses vitro.local.solr.url = http://localhost:8984/solr/collection1.
