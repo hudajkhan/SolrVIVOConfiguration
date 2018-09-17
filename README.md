@@ -27,7 +27,7 @@ It is also worth nothing that vitro-dependencies uses version 4.10.4 of solrj (t
 To try out with VIVO code, for now (without making changes to VIVO itself), you can use the following steps:
 
 - Get Solr 7.0.4 and install.  For example, say the Solr directory is under /pathtosolr/solr-7.0.4.  Under this directory, you should be able to see the following directories: contrib, dist, docs, example, licenses, server. 
-- Copy the directory from this repo into a directory you will have to create in the server directory  (e.g. /pathtosolr/solr-7.0.4/server/collection1 where collection1 is the name of the Solr collection for this example).
+- Copy the directory from this repo into a directory you will have to create in the server solr directory  (e.g. /pathtosolr/solr-7.0.4/server/solr/collection1 where collection1 is the name of the Solr collection for this example).
 - In your VIVO instance, comment out SolrSmokeTests for now by updating the startup_listeners file located here: VIVO\webapp\src\main\webapp\WEB-INF\resources\startup_listeners.txt
 - Install VIVO as you normally would, and use http://localhost:8983/solr/collection1 as your vitro.local.solr.url property value in runtime.properties (in VIVO home directory's config directory).  (If your solr uses a port other than 8983, you will have to use that instead.)
 
